@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.footprint.user.dao.UserDao">
+
+    <insert id="insertUser" parameterType="User" >
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.userId != -1">user_id,</if>
+            <if test="user.userName != null">user_name,</if>
+            <if test="user.password != null">password,</if>
+            <if test="user.phone != null">phone,</if>
+            <if test="user.faceUrl != null">face_url,</if>
+            <if test="user.gender != null">gender,</if>
+            <if test="user.province != null">province,</if>
+            <if test="user.city != null">city,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.userId != -1">#{user.userId},</if>
+            <if test="user.userName != null">#{user.userName},</if>
+            <if test="user.password != null">#{user.password},</if>
+            <if test="user.phone != null">#{user.phone},</if>
+            <if test="user.faceUrl != null">#{user.faceUrl},</if>
+            <if test="user.gender != null">#{user.gender},</if>
+            <if test="user.province != null">#{user.province},</if>
+            <if test="user.city != null">#{user.city},</if>
+        </trim>
+    </insert>
+
+    <sql id="queryUserConditions">
+        <where>
+            <if test="userId != -1">user_id = #{userId}</if>
+            <if test="userName != null">and user_name = #{userName}</if>
+            <if test="password != null">and password = #{password}</if>
+            <if test="phone != null">and phone = #{phone}</if>
+            <if test="faceUrl != null">and face_url = #{faceUrl}</if>
+            <if test="gender != null">and gender = #{gender},</if>
+            <if test="province != null">and province = #{province},</if>
+            <if test="city != null">and city = #{city},</if>
+        </where>
+    </sql>
+
+    <resultMap id="UserMap" type="User">
+        <id column="user_id" property="userId" />
+        <result column="face_url" property="faceUrl" />
+        <result column="user_name" property="userName" />
+    </resultMap>
+    
+    <select id="selectUser" parameterType="User" resultMap="UserMap">
+        select * from user
+        <include refid="queryUserConditions"/>
+    </select>
+
+    <select id="selectUsers" parameterType="User" resultMap="UserMap">
+        select * from user
+        <include refid="queryUserConditions"/>
+    </select>
+
+    <select id="selectCount" parameterType="User" resultType="Integer">
+        select count(1) from user
+        <include refid="queryUserConditions"/>
+    </select>
+
+
+</mapper>
