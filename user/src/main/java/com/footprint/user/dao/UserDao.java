@@ -23,20 +23,20 @@ public interface UserDao {
      * @param user
      * @return 查找到的用户列表
      */
-    public List<User> selectUsers(User user);
+    public List<User> selectUsers(@Param("user")User user);
 
     /**
      * 根据条件查询单个用户
      * @param user 用户Bean
      * @return 查找到的用户
      */
-    public User selectUser(User user);
+    public User selectUser(@Param("user")User user);
 
     /**
      * 统计指定条件用户的数量
      * @param user 用户 Bean
      * @return 数量
      */
-    public int selectCount(User user);
+    public int selectCount(@Param("user")User user);
 
 }
