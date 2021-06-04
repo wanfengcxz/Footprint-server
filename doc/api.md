@@ -137,7 +137,7 @@
 
 ## 4.获取我发布的文章
 
-### GET /json/my_article
+### GET /json/my_articles
 
 获取我发布过的所有文章。按时间降序排列。
 
@@ -162,26 +162,34 @@
     "msg": "成功",
     "data": [
         {
-            "article_id": 2,
-            "user_id": 6,
-            "title": "EASY2",
-            "content": "我终于云部署成功啦",
-            "total_like": 3,
-            "image_num":2,
-            "time_stamp": 1610199582
+            "articleId": 1,
+            "userId": 4,
+            "title": "鬼才建筑师Heatherwick|纽约漂浮公园",
+            "content": "Thomas Heatherwick\r\n人称设计鬼才设计界的颠覆者~\r\n哈德逊河55号码头\r\n这座耗资1.7亿美元的码头\r\n位于纽约哈德逊河公园码头54和码头56之间是一个全新模式的公共码头、公共公园\r\n花瓣状的外观如同波浪\r\n漂浮在河水之上、十分唯美\r\n周围被郁郁葱葱绿色植被覆盖\r\n为城市增添了一道靓丽的景观\r\n",
+            "totalLike": 666,
+            "timeStamp": 1622728040,
+            "imageNum": 3
         },
         {
-            "article_id": 3,
-            "user_id": 6,
-            "title": "EASY2",
-            "content": "真的花了我好大力气",
-            "total_likes": 0,
-            "image_num":3,
-            "time_stamp": 1610199511
+            "articleId": 4,
+            "userId": 4,
+            "title": "行走于钢筋密林，幽定格重庆的过去与未来时隔十载，我回到重庆要寻找的是什么?",
+            "content": "可能是青春的回忆，毕业十周年返校聚会;\r\n可能是陪爱人打卡《少年的你》拍摄地;\r\n还可能是为了亲临目睹重庆的种种变化。\r\n当我重新踏入这座留存于记忆中的第二故乡时，涌上心头的是一种既陌生、又熟悉的复杂感。\r\n抬头仰望发现空中是穿梭于钢筋密林间的索道、轻轨、立交桥。\r\n我便在返校聚会之余拿起相机，把重庆的过去与未来定格在方寸之间。\r\n",
+            "totalLike": 913,
+            "timeStamp": 1621562539,
+            "imageNum": 3
+        },
+        {
+            "articleId": 5,
+            "userId": 4,
+            "title": "上海|这样拍外滩，让你的照片制霸票圈",
+            "content": "上海人的生活总是离不开马路\r\n每一条马路都藏着这个城市的活力密码\r\n来上海外滩当然是必去的!\r\n外滩的建筑、外滩的马路、外滩的一草一木，一路走来，都代表了上海的历史和故事!啥?来外滩只知道拍四件套?白来了晓得伐!来跟着lucky拍一拍外滩附近的马路刷爆你的票圈吧！\r\n",
+            "totalLike": 1223,
+            "timeStamp": 1622600529,
+            "imageNum": 3
         }
     ]
 }
-
 imageList[0]:http://footprint.wanfengcxz.cn/images/6/2/0.png
 imageList[1]:http://footprint.wanfengcxz.cn/images/6/2/0.png
 face_url:http://footprint.wanfengcxz.cn/images/6/0.png 
@@ -199,7 +207,7 @@ face_url:http://footprint.wanfengcxz.cn/images/6/0.png
 
 ## 5.随机获取文章
 
-### GET /json/articles
+### GET /json/random_articles
 
 随机获取一些文章。
 
@@ -224,26 +232,34 @@ face_url:http://footprint.wanfengcxz.cn/images/6/0.png
     "msg": "成功",
     "data": [
         {
-            "article_id": 2,
-            "user_id": 6,
-            "title": "EASY2",
-            "content": "我终于云部署成功啦",
-            "total_like": 3,
-            "image_num":2,
-            "time_stamp": 1610199582
+            "articleId": 2,
+            "userId": 6,
+            "title": "湖里万达也开KKV了!",
+            "content": "今天偶然发现的，之前去过加州那家\r\n加州的有-面饰品和红酒墙万达有泡面墙间\r\n没想到大家这么喜欢，又去一-次给大家更新一下万达这家有一小块地酒品，加州是一面红酒墙\r\n",
+            "totalLike": 124,
+            "timeStamp": 1622616439,
+            "imageNum": 3
         },
         {
-            "article_id": 3,
-            "user_id": 6,
-            "title": "EASY2",
-            "content": "真的花了我好大力气",
-            "total_likes": 0,
-            "image_num":3,
-            "timestamp": 1610199511
+            "articleId": 4,
+            "userId": 4,
+            "title": "行走于钢筋密林，幽定格重庆的过去与未来时隔十载，我回到重庆要寻找的是什么?",
+            "content": "可能是青春的回忆，毕业十周年返校聚会;\r\n可能是陪爱人打卡《少年的你》拍摄地;\r\n还可能是为了亲临目睹重庆的种种变化。\r\n当我重新踏入这座留存于记忆中的第二故乡时，涌上心头的是一种既陌生、又熟悉的复杂感。\r\n抬头仰望发现空中是穿梭于钢筋密林间的索道、轻轨、立交桥。\r\n我便在返校聚会之余拿起相机，把重庆的过去与未来定格在方寸之间。\r\n",
+            "totalLike": 913,
+            "timeStamp": 1621562539,
+            "imageNum": 3
+        },
+        {
+            "articleId": 3,
+            "userId": 8,
+            "title": "杭州新地标萧山杭州之门像不像倒着的秋裤",
+            "content": "位于杭州奥体博览城东至杭州国际博览中心\r\n西至综合训练馆\r\n据说有310米未来有望成为钱江南岸的新地标\r\n",
+            "totalLike": 312,
+            "timeStamp": 1622520739,
+            "imageNum": 3
         }
     ]
 }
-
 imageList[0]:http://footprint.wanfengcxz.cn/images/6/2/0.png
 imageList[1]:http://footprint.wanfengcxz.cn/images/6/2/0.png
 face_url:http://footprint.wanfengcxz.cn/images/6/0.png 
