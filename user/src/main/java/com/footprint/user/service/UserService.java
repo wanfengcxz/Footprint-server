@@ -1,6 +1,7 @@
 package com.footprint.user.service;
 
 import com.footprint.eureka.entity.User;
+
 public interface UserService {
 
     /**

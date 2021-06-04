@@ -2,7 +2,6 @@ package com.footprint.user.dao;
 
 import com.footprint.eureka.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
