@@ -5,25 +5,25 @@
     <insert id="insertUser" parameterType="User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="user.userId != -1">user_id,</if>
-            <if test="user.userName != null">user_name,</if>
-            <if test="user.password != null">password,</if>
-            <if test="user.phone != null">phone,</if>
-            <if test="user.faceUrl != null">face_url,</if>
-            <if test="user.gender != null">gender,</if>
-            <if test="user.province != null">province,</if>
-            <if test="user.city != null">city,</if>
+            <if test="userId != -1">user_id,</if>
+            <if test="userName != null">user_name,</if>
+            <if test="password != null">password,</if>
+            <if test="phone != null">phone,</if>
+            <if test="faceUrl != null">face_url,</if>
+            <if test="gender != null">gender,</if>
+            <if test="province != null">province,</if>
+            <if test="city != null">city,</if>
         </trim>
         values
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="user.userId != -1">#{user.userId},</if>
-            <if test="user.userName != null">#{user.userName},</if>
-            <if test="user.password != null">#{user.password},</if>
-            <if test="user.phone != null">#{user.phone},</if>
-            <if test="user.faceUrl != null">#{user.faceUrl},</if>
-            <if test="user.gender != null">#{user.gender},</if>
-            <if test="user.province != null">#{user.province},</if>
-            <if test="user.city != null">#{user.city},</if>
+            <if test="userId != -1">#{userId},</if>
+            <if test="userName != null">#{userName},</if>
+            <if test="password != null">#{password},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="faceUrl != null">#{faceUrl},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="province != null">#{province},</if>
+            <if test="city != null">#{city},</if>
         </trim>
     </insert>
 
