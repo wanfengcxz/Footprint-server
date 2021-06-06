@@ -43,7 +43,7 @@ public class ArticleController {
                 // 验证用户
                 String id_decrypt = AESUtil.decode(encryptCode);
                 if (id_decrypt.equals(userId)) {
-                    List<Article> articleList = articleService.getRandomArticles(3);
+                    List<Article> articleList = articleService.getRandomArticles(userId,3);
                     return ResultUtil.success(articleList);
                 }
                 else
@@ -53,6 +53,51 @@ public class ArticleController {
                 // 解密错误
                 return ResultUtil.illegalAccess();
             }
+    }
+
+    @RequestMapping(value = "/like", method = RequestMethod.POST)
+    public Result like(@RequestParam("user_id") String userId,
+                       @RequestParam("encrypt_code") String encryptCode,
+                       @RequestParam("article_id") String articleId){
+        try {
+            // 验证用户
+            String id_decrypt = AESUtil.decode(encryptCode);
+            if (id_decrypt.equals(userId)) {
+                if (articleService.like(articleId,userId))
+                    return ResultUtil.success();
+                else
+                    return ResultUtil.unknownError();
+            }
+            else
+                return ResultUtil.illegalAccess();
+
+        } catch (BadPaddingException e) {
+            // 解密错误
+            return ResultUtil.illegalAccess();
+        }
 
     }
+    @RequestMapping(value = "/dislike", method = RequestMethod.POST)
+    public Result dislike(@RequestParam("user_id") String userId,
+                       @RequestParam("encrypt_code") String encryptCode,
+                       @RequestParam("article_id") String articleId) {
+        try {
+            // 验证用户
+            String id_decrypt = AESUtil.decode(encryptCode);
+            if (id_decrypt.equals(userId)) {
+                if (articleService.dislike(articleId,userId))
+                    return ResultUtil.success();
+                else
+                    return ResultUtil.unknownError();
+            }
+            else
+                return ResultUtil.illegalAccess();
+
+        } catch (BadPaddingException e) {
+            // 解密错误
+            return ResultUtil.illegalAccess();
+        }
+    }
+
+
 }

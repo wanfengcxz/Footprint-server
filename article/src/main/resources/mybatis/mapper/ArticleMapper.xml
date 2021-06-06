@@ -31,7 +31,7 @@
             <if test="articleId != -1">and article_id = #{articleId}</if>
             <if test="title != null">and title = #{title}</if>
             <if test="content != null">and content = #{content}</if>
-            <if test="totalLike != -1">and total_like = #{otalLike}</if>
+            <if test="totalLike != -1">and total_like = #{totalLike}</if>
             <if test="timeStamp != -1">and time_stamp = #{timeStamp}</if>
             <if test="imageNum != -1">and image_num = #{imageNum}</if>
         </where>
@@ -57,7 +57,7 @@
         <include refid="queryArticleConditions"/>
     </select>
 
-    <select id="selectCount" parameterType="Article" resultType="Integer">
+    <select id="selectArticleCount" parameterType="Article" resultType="Integer">
         select count(1) from article
         <include refid="queryArticleConditions"/>
     </select>
@@ -65,5 +65,29 @@
     <select id="getRandomArticle" resultMap="ArticleMap">
         select * from article order by rand(#{timeStamp}) limit #{num}
     </select>
+
+    <update id="TotalLikePlusOne">
+        update article set total_like = total_like + 1 where article_id = #{articleId}
+    </update>
+
+    <update id="TotalLikeMinusOne">
+        update article set total_like = total_like - 1 where article_id = #{articleId}
+    </update>
+
+    <select id="selectLikeCount" parameterType="Like" resultType="Integer">
+        select count(1) from `like` where article_id = #{articleId} and
+            user_id = #{userId}
+    </select>
+
+    <delete id="deleteLike" parameterType="Like">
+        delete from `like` where article_id = #{articleId} and
+        user_id = #{userId}
+    </delete>
+
+    <insert id="insertLike" parameterType="Like">
+        insert into `like` (id, article_id, user_id)
+        values(0, #{articleId}, #{userId})
+    </insert>
+
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.footprint.article.dao;
 
 import com.footprint.eureka.entity.Article;
+import com.footprint.eureka.entity.Like;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +30,7 @@ public interface ArticleDao {
      * @param article 条件
      * @return 文章数量
      */
-    public int selectCount(Article article);
+    public int selectArticleCount(Article article);
 
     /**
      * 随机获取一些文章
@@ -37,4 +38,40 @@ public interface ArticleDao {
      * @return 文章列表
      */
     public List<Article> getRandomArticle(int timeStamp, int num);
+
+    /**
+     * 将指定文章点赞数加1
+     * @param articleId 文章ID
+     * @return 1:点赞数减1成功
+     */
+    public int TotalLikePlusOne(int articleId);
+
+    /**
+     * 将指定文章点赞数加1
+     * @param articleId 文章ID
+     * @return 1:点赞数加1成功
+     */
+    public int TotalLikeMinusOne(int articleId);
+
+    /**
+     * 查询是否有点赞记录
+     * @param like 点赞记录(用户ID，文章ID)
+     * @return 1:有 0:没有
+     */
+    public int selectLikeCount(Like like);
+
+    /**
+     * 删除点赞记录
+     * @param like 点赞记录
+     * @return 1:删除成功 0:没有当前记录
+     */
+    public int deleteLike(Like like);
+
+    /**
+     * 插入点赞记录
+     * @param like 点赞记录
+     * @return 插入结果
+     */
+    public int insertLike(Like like);
+
 }
