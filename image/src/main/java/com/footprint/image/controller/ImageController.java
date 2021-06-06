@@ -3,12 +3,9 @@ package com.footprint.image.controller;
 import com.footprint.eureka.utils.AESUtil;
 import com.footprint.eureka.utils.Result;
 import com.footprint.eureka.utils.ResultUtil;
-import com.footprint.image.service.ImageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
-
 import javax.crypto.BadPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +18,8 @@ import java.util.Iterator;
 @RequestMapping("/image")
 public class ImageController {
 
-    @Autowired
-    private ImageService imageService = null;
-
-    @RequestMapping(value = "/article_image", method = RequestMethod.POST)
-    public Result uploadArticleImage(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/image", method = RequestMethod.POST)
+    public Result uploadImage(HttpServletRequest request, HttpServletResponse response) {
         try {
             //设置编码
             request.setCharacterEncoding("utf-8");
