@@ -1,10 +1,23 @@
 package com.footprint.article.service;
 
 import com.footprint.eureka.entity.Article;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 public interface ArticleService {
+
+    /**
+     * 插入文章
+     * @param userId 用户ID
+     * @param title 文章标题
+     * @param content 文章内容
+     * @param timestamp 时间戳
+     * @param total_like 点赞数目
+     * @param image_num 照片数目
+     * @return 1插入成功
+     */
+    public int publishArticle(String userId, String title, String content, String timestamp,String total_like, String image_num);
 
     /**
      * 获取当前用户的所有文章
