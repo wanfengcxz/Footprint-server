@@ -1,4 +1,13 @@
-# 接口说明
+# 接口文章
+
+server = http://127.0.0.1
+
+| 模块    | 端口  |
+| ------- | ----- |
+| eureka  | 20001 |
+| user    | 20002 |
+| article | 20003 |
+| image   | 20004 |
 
 ## 1.用户注册
 
@@ -10,12 +19,15 @@
 
 类型：x-www-form-urlencoded
 
-| 参数      | 类型   | 是否为空 | 备注                     | 合法值       |
-| :-------- | :----- | :------- | :----------------------- | :----------- |
-| user_name | string | 否       | 用户名(昵称)             | 30个字符以内 |
-| phone     | string | 否       | 电话号码                 | 11位数字     |
-| password  | string | 否       | 密码                     | 20个字符以内 |
-| face_url  | string | 否       | 微信客户端生成的用户头像 | xxx.png      |
+| 参数      | 类型   | 是否为空 | 备注                     | 合法值              |
+| :-------- | :----- | :------- | :----------------------- | :------------------ |
+| user_name | string | 否       | 用户名(昵称)             | 30个字符以内        |
+| phone     | string | 否       | 电话号码                 | 11位数字            |
+| password  | string | 否       | 密码                     | 20个字符以内        |
+| face_url  | string | 否       | 微信客户端生成的用户头像 | xxx.png             |
+| gender    | string | 否       | 性别                     | 0女生1男生 一个字符 |
+| city      | string | 否       | 城市                     | 10个字符以内        |
+| province  | string | 否       | 省份                     | 10个字符以内        |
 
 ### 响应
 
@@ -73,7 +85,6 @@
         "password": "stRdD02ctYpoFIdAFHVKAQ==",
         // password被替换成了一个加密字段，用于以后访问时验证用户的合法性
         "face_url": "xx.png"
-        // 服务器会将微信客户端生成的头像在本地保存一份，然后返回其URL
     }
 }
 ```
@@ -109,7 +120,8 @@
 | encrypt_code | string | 否       | 加密后的user_id 用来验证请求的合法性 |               |
 | title        | string | 否       | 文章标题                             | 100个字符以内 |
 | content      | string | 否       | 文章内容                             | 500个字符以内 |
-| time_stamp   | string | 否       | 文章发布的时间戳                     |               |
+| timestamp    | string | 否       | 文章发布的时间戳                     | 10个字符      |
+| iamge_num    | string | 否       | 文章附带图片总数                     |               |
 
 ### 响应
 
@@ -277,43 +289,42 @@ face_url:http://footprint.wanfengcxz.cn/images/6/0.png
 
 ## 6.上传图片
 
-### POST /json/image
+### POST /image/image
 
-用户上传图片。
+用户上传图片。结合前端微信小程序，略。
 
-### 参数
+图片上传说明：
 
-类型：x-www-form-urlencoded
-
-| 参数         | 类型   | 是否为空 | 备注                            | 合法值 |
-| ------------ | ------ | -------- | ------------------------------- | ------ |
-| user_id      | string | 否       | 唯一标识一个用户                |        |
-| encrypt_code | string | 否       | 加密后的id 用来验证请求的合法性 |        |
-| article_id   | string | 否       | 唯一标识一篇文章                |        |
-| filePath     | string | 否       | 本地要上传图片的路径            |        |
-
-### 响应
-
-类型：json
-
-成功实例：
+**图片存储路径**
 
 ```json
-{
-    "code": 0,
-    "msg": "成功",
-    "data": null
-}
+imagePath="D:\\Coding\\tmp\\" + userId + "\\" + articleId + "\\"
 ```
 
-失败实例：
+**说明**
+
+以用户ID和文章ID来唯一标识一张图片，对于一篇文章的所有图片，以1.png 2.png 3.png .....依次进行命名存储。当图片为用户的头像时，将articleId置为0，然后以0.png进行命名存储。
+
+**eg**
+
+userId=4  articleId=5 该文章有两张图片
+
+则该文章第一张图片的URL为
 
 ```json
-{
-    "code": 7,
-    "msg": "非法访问",
-    "data": null
-}
+"D:\\Coding\\tmp\\4\\5\\1.png"
+```
+
+第二章图片的URL为
+
+```json
+"D:\\Coding\\tmp\\4\\5\\2.png"
+```
+
+该用户头像URL为
+
+```json
+"D:\\Coding\\tmp\\4\\0\\0.png"
 ```
 
 ### 7.喜欢
