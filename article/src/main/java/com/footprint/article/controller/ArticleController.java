@@ -25,13 +25,12 @@ public class ArticleController {
                              @RequestParam("title") String title,
                              @RequestParam("content") String content,
                              @RequestParam("timestamp") String timestamp,
-                             @RequestParam("total_like") String total_like,
                              @RequestParam("image_num") String image_num) {
         try {
             // 验证用户
             String id_decrypt = AESUtil.decode(encryptCode);
             if (id_decrypt.equals(userId)) {
-                int res = articleService.publishArticle(userId,title,content,timestamp,total_like,image_num);
+                int res = articleService.publishArticle(userId,title,content,timestamp,image_num);
                 if (res == 1)
                     return ResultUtil.success();
                 else

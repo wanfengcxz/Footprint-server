@@ -15,12 +15,11 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleDao articleDao = null;
 
     @Override
-    public int publishArticle(String userId, String title, String content, String timestamp, String total_like, String image_num) {
+    public int publishArticle(String userId, String title, String content, String timestamp, String image_num) {
         int userIdInt = Integer.parseInt(userId);
-        int totalLikeInt = Integer.parseInt(total_like);
         int timeStampInt = Integer.parseInt(timestamp);
         int imageNumInt = Integer.parseInt(image_num);
-        Article article = new Article(0,userIdInt,title,content,totalLikeInt,timeStampInt,imageNumInt,0);
+        Article article = new Article(0,userIdInt,title,content,-1,timeStampInt,imageNumInt,0);
         return articleDao.insertArticle(article);
     }
 
