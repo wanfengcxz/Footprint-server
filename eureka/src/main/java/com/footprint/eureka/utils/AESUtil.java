@@ -16,7 +16,7 @@ import javax.crypto.BadPaddingException;
  * @description 提供数据加密操作，用于访问控制
  */
 public class AESUtil {
-    private static final String default_key = "test";
+    private static final String default_key = "niceFootprint";
     static final Base64.Decoder decoder = Base64.getDecoder();
     static final Base64.Encoder encoder = Base64.getEncoder();
     static final String charset = "utf-8";
