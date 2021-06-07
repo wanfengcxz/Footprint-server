@@ -47,6 +47,25 @@
         <result column="image_num" property="imageNum"/>
     </resultMap>
 
+    <resultMap id="UserMap" type="User">
+        <id column="user_id" property="userId"/>
+        <result column="face_url" property="faceUrl"/>
+        <result column="user_name" property="userName"/>
+    </resultMap>
+
+    <sql id="queryUserConditions">
+        <where>
+            <if test="userId != -1">user_id = #{userId}</if>
+            <if test="userName != null">and user_name = #{userName}</if>
+            <if test="password != null">and password = #{password}</if>
+            <if test="phone != null">and phone = #{phone}</if>
+            <if test="faceUrl != null">and face_url = #{faceUrl}</if>
+            <if test="gender != null">and gender = #{gender}</if>
+            <if test="province != null">and province = #{province}</if>
+            <if test="city != null">and city = #{city}</if>
+        </where>
+    </sql>
+
     <select id="selectArticles" parameterType="Article" resultMap="ArticleMap">
         select * from article
         <include refid="queryArticleConditions"/>
@@ -89,5 +108,9 @@
         values(0, #{articleId}, #{userId})
     </insert>
 
+    <select id="selectUser" parameterType="User" resultMap="UserMap">
+        select * from user
+        <include refid="queryUserConditions"/>
+    </select>
 
 </mapper>

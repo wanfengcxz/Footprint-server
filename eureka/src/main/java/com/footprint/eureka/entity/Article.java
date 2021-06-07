@@ -27,4 +27,6 @@ public class Article {
 
     private int isLike;
 
+    private String userName;
+
 }

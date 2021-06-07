@@ -11,6 +11,8 @@ server = http://127.0.0.1
 
 ## 1.用户注册
 
+http://127.0.0.1:20002/json/user
+
 ### POST /json/user
 
 用户注册。
@@ -121,7 +123,7 @@ server = http://127.0.0.1
 | title        | string | 否       | 文章标题                             | 100个字符以内 |
 | content      | string | 否       | 文章内容                             | 500个字符以内 |
 | timestamp    | string | 否       | 文章发布的时间戳                     | 10个字符      |
-| iamge_num    | string | 否       | 文章附带图片总数                     |               |
+| image_num    | string | 否       | 文章附带图片总数                     |               |
 
 ### 响应
 
@@ -174,31 +176,59 @@ server = http://127.0.0.1
     "msg": "成功",
     "data": [
         {
-            "articleId": 1,
-            "userId": 4,
-            "title": "鬼才建筑师Heatherwick|纽约漂浮公园",
-            "content": "Thomas Heatherwick\r\n人称设计鬼才设计界的颠覆者~\r\n哈德逊河55号码头\r\n这座耗资1.7亿美元的码头\r\n位于纽约哈德逊河公园码头54和码头56之间是一个全新模式的公共码头、公共公园\r\n花瓣状的外观如同波浪\r\n漂浮在河水之上、十分唯美\r\n周围被郁郁葱葱绿色植被覆盖\r\n为城市增添了一道靓丽的景观\r\n",
-            "totalLike": 666,
-            "timeStamp": 1622728040,
-            "imageNum": 3
-        },
-        {
             "articleId": 4,
             "userId": 4,
             "title": "行走于钢筋密林，幽定格重庆的过去与未来时隔十载，我回到重庆要寻找的是什么?",
             "content": "可能是青春的回忆，毕业十周年返校聚会;\r\n可能是陪爱人打卡《少年的你》拍摄地;\r\n还可能是为了亲临目睹重庆的种种变化。\r\n当我重新踏入这座留存于记忆中的第二故乡时，涌上心头的是一种既陌生、又熟悉的复杂感。\r\n抬头仰望发现空中是穿梭于钢筋密林间的索道、轻轨、立交桥。\r\n我便在返校聚会之余拿起相机，把重庆的过去与未来定格在方寸之间。\r\n",
             "totalLike": 913,
             "timeStamp": 1621562539,
-            "imageNum": 3
+            "imageNum": 3,
+            "isLike": 0,
+            "userName": null
         },
         {
             "articleId": 5,
             "userId": 4,
             "title": "上海|这样拍外滩，让你的照片制霸票圈",
             "content": "上海人的生活总是离不开马路\r\n每一条马路都藏着这个城市的活力密码\r\n来上海外滩当然是必去的!\r\n外滩的建筑、外滩的马路、外滩的一草一木，一路走来，都代表了上海的历史和故事!啥?来外滩只知道拍四件套?白来了晓得伐!来跟着lucky拍一拍外滩附近的马路刷爆你的票圈吧！\r\n",
-            "totalLike": 1223,
+            "totalLike": 1225,
             "timeStamp": 1622600529,
-            "imageNum": 3
+            "imageNum": 3,
+            "isLike": 1,
+            "userName": null
+        },
+        {
+            "articleId": 6,
+            "userId": 4,
+            "title": "鬼才建筑师Heatherwick|纽约漂浮公园",
+            "content": "Thomas Heatherwick\r\n人称设计鬼才设计界的颠覆者~\r\n哈德逊河55号码头\r\n这座耗资1.7亿美元的码头\r\n位于纽约哈德逊河公园码头54和码头56之间是一个全新模式的公共码头、公共公园\r\n花瓣状的外观如同波浪\r\n漂浮在河水之上、十分唯美\r\n周围被郁郁葱葱绿色植被覆盖\r\n为城市增添了一道靓丽的景观\r\n",
+            "totalLike": 669,
+            "timeStamp": 1622728040,
+            "imageNum": 3,
+            "isLike": 1,
+            "userName": null
+        },
+        {
+            "articleId": 7,
+            "userId": 4,
+            "title": "just for test",
+            "content": "this is a test",
+            "totalLike": 1231,
+            "timeStamp": 1622979933,
+            "imageNum": 4,
+            "isLike": 0,
+            "userName": null
+        },
+        {
+            "articleId": 8,
+            "userId": 4,
+            "title": "just for test2",
+            "content": "this is a test2",
+            "totalLike": 0,
+            "timeStamp": 1622979955,
+            "imageNum": 4,
+            "isLike": 0,
+            "userName": null
         }
     ]
 }
@@ -244,13 +274,26 @@ face_url:http://footprint.wanfengcxz.cn/images/6/0.png
     "msg": "成功",
     "data": [
         {
+            "articleId": 3,
+            "userId": 8,
+            "title": "杭州新地标萧山杭州之门像不像倒着的秋裤",
+            "content": "位于杭州奥体博览城东至杭州国际博览中心\r\n西至综合训练馆\r\n据说有310米未来有望成为钱江南岸的新地标\r\n",
+            "totalLike": 315,
+            "timeStamp": 1622520739,
+            "imageNum": 3,
+            "isLike": 1,
+            "userName": "寂静之地"
+        },
+        {
             "articleId": 2,
             "userId": 6,
             "title": "湖里万达也开KKV了!",
             "content": "今天偶然发现的，之前去过加州那家\r\n加州的有-面饰品和红酒墙万达有泡面墙间\r\n没想到大家这么喜欢，又去一-次给大家更新一下万达这家有一小块地酒品，加州是一面红酒墙\r\n",
-            "totalLike": 124,
+            "totalLike": 126,
             "timeStamp": 1622616439,
-            "imageNum": 3
+            "imageNum": 3,
+            "isLike": 1,
+            "userName": "哆啦A梦"
         },
         {
             "articleId": 4,
@@ -259,16 +302,9 @@ face_url:http://footprint.wanfengcxz.cn/images/6/0.png
             "content": "可能是青春的回忆，毕业十周年返校聚会;\r\n可能是陪爱人打卡《少年的你》拍摄地;\r\n还可能是为了亲临目睹重庆的种种变化。\r\n当我重新踏入这座留存于记忆中的第二故乡时，涌上心头的是一种既陌生、又熟悉的复杂感。\r\n抬头仰望发现空中是穿梭于钢筋密林间的索道、轻轨、立交桥。\r\n我便在返校聚会之余拿起相机，把重庆的过去与未来定格在方寸之间。\r\n",
             "totalLike": 913,
             "timeStamp": 1621562539,
-            "imageNum": 3
-        },
-        {
-            "articleId": 3,
-            "userId": 8,
-            "title": "杭州新地标萧山杭州之门像不像倒着的秋裤",
-            "content": "位于杭州奥体博览城东至杭州国际博览中心\r\n西至综合训练馆\r\n据说有310米未来有望成为钱江南岸的新地标\r\n",
-            "totalLike": 312,
-            "timeStamp": 1622520739,
-            "imageNum": 3
+            "imageNum": 3,
+            "isLike": 0,
+            "userName": "悬崖之上"
         }
     ]
 }

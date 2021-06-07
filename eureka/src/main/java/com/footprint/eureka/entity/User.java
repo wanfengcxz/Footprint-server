@@ -27,4 +27,17 @@ public class User {
 
     private String gender;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", faceUrl='" + faceUrl + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
 }

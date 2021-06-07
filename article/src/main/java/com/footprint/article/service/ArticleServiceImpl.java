@@ -3,6 +3,7 @@ package com.footprint.article.service;
 import com.footprint.article.dao.ArticleDao;
 import com.footprint.eureka.entity.Article;
 import com.footprint.eureka.entity.Like;
+import com.footprint.eureka.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +15,25 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private ArticleDao articleDao = null;
 
+
     @Override
     public int publishArticle(String userId, String title, String content, String timestamp, String image_num) {
         int userIdInt = Integer.parseInt(userId);
         int timeStampInt = Integer.parseInt(timestamp);
         int imageNumInt = Integer.parseInt(image_num);
-        Article article = new Article(0,userIdInt,title,content,-1,timeStampInt,imageNumInt,0);
+        Article article = new Article(0,userIdInt,title,content,-1,timeStampInt,imageNumInt,0,null);
         return articleDao.insertArticle(article);
     }
 
     @Override
     public List<Article> getMyArticle(String userId) {
         int userIdInt = Integer.parseInt(userId);
-        Article article = new Article(-1, userIdInt, null, null, -1, -1, -1, -1);
+        Article article = new Article(-1, userIdInt, null, null, -1, -1, -1, -1,null);
         List<Article> articleList = articleDao.selectArticles(article);
         if (articleList != null) {
-            // 构造点赞信息
             Like like = new Like();
             for(Article article1:articleList){
+                // 获取点赞信息
                 like.setArticleId(article1.getArticleId());
                 like.setUserId(userIdInt);
                 int isLike = articleDao.selectLikeCount(like);
@@ -48,13 +50,20 @@ public class ArticleServiceImpl implements ArticleService {
         int timeStamp = (int) (System.currentTimeMillis() / 1000);
         List<Article> articleList = articleDao.getRandomArticle(timeStamp, num);
         if (articleList != null) {
-            // 构造点赞信息
+            User user = new User();
             Like like = new Like();
             for(Article article1:articleList){
+                // 获取点赞信息
                 like.setArticleId(article1.getArticleId());
                 like.setUserId(userIdInt);
                 int isLike = articleDao.selectLikeCount(like);
                 article1.setIsLike(isLike);
+                // 获取用户名
+                user.setUserId(article1.getUserId());
+                System.out.println("userId"+user.getUserId());
+                User user2 = articleDao.selectUser(user);
+                System.out.println(user2);
+                article1.setUserName(user2.getUserName());
             }
             return articleList;
         } else
@@ -64,7 +73,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean like(String articleId, String userId) {
         // 构造查询条件，首先判断文章是否存在
-        Article article = new Article(Integer.parseInt(articleId),-1,null,null,-1,-1,-1,-1);
+        Article article = new Article(Integer.parseInt(articleId),-1,null,null,-1,-1,-1,-1,null);
         // 如果数据库不存在这篇文章 则错误
         if (articleDao.selectArticleCount(article) != 1) return false;
         Like like = new Like(0,Integer.parseInt(articleId),Integer.parseInt(userId));
@@ -83,7 +92,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean dislike(String articleId, String userId) {
         // 构造查询条件，首先判断文章是否存在
-        Article article = new Article(Integer.parseInt(articleId),-1,null,null,-1,-1,-1,-1);
+        Article article = new Article(Integer.parseInt(articleId),-1,null,null,-1,-1,-1,-1,null);
         // 如果数据库不存在这篇文章 则错误
         if (articleDao.selectArticleCount(article) != 1) return false;
         Like like = new Like(0,Integer.parseInt(articleId),Integer.parseInt(userId));

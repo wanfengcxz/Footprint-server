@@ -2,6 +2,7 @@ package com.footprint.article.dao;
 
 import com.footprint.eureka.entity.Article;
 import com.footprint.eureka.entity.Like;
+import com.footprint.eureka.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -73,5 +74,13 @@ public interface ArticleDao {
      * @return 插入结果
      */
     public int insertLike(Like like);
+
+    /**
+     * 根据条件查询单个用户
+     * @param user 用户Bean
+     * @return 查找到的用户
+     */
+    public User selectUser(User user);
+
 
 }
