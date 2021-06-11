@@ -81,12 +81,14 @@ http://127.0.0.1:20002/json/user
     "code": 0,
     "msg": "成功",
     "data": {
-        "user_id": 6,
-        "user_name": "EASY2",
-        "phone": "15137412355",
-        "password": "stRdD02ctYpoFIdAFHVKAQ==",
-        // password被替换成了一个加密字段，用于以后访问时验证用户的合法性
-        "face_url": "xx.png"
+        "userId": 4,
+        "userName": "悬崖之上",
+        "phone": "12345678913",
+        "password": "T4mLlqC/Z6Ju27YUIWkMxg==",
+        "faceUrl": "123.png",
+        "province": "四川",
+        "city": "成都",
+        "gender": "0"
     }
 }
 ```
@@ -180,7 +182,7 @@ http://127.0.0.1:20002/json/user
             "userId": 4,
             "title": "行走于钢筋密林，幽定格重庆的过去与未来时隔十载，我回到重庆要寻找的是什么?",
             "content": "可能是青春的回忆，毕业十周年返校聚会;\r\n可能是陪爱人打卡《少年的你》拍摄地;\r\n还可能是为了亲临目睹重庆的种种变化。\r\n当我重新踏入这座留存于记忆中的第二故乡时，涌上心头的是一种既陌生、又熟悉的复杂感。\r\n抬头仰望发现空中是穿梭于钢筋密林间的索道、轻轨、立交桥。\r\n我便在返校聚会之余拿起相机，把重庆的过去与未来定格在方寸之间。\r\n",
-            "totalLike": 913,
+            "totalLike": 913,1
             "timeStamp": 1621562539,
             "imageNum": 3,
             "isLike": 0,
