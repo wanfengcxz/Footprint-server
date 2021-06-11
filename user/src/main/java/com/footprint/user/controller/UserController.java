@@ -24,8 +24,10 @@ public class UserController {
                            @RequestParam("gender") String gender,
                            @RequestParam("city") String city,
                            @RequestParam("province") String province) {
+        // 检测手机号的合法性
         if (this.userService.checkPhone(phone)) {
             User user = new User(0, userName, phone, password, faceUrl, province, city, gender);
+            // 用户进行注册
             if (this.userService.registerUser(user) == 1)
                 return ResultUtil.success();
             else

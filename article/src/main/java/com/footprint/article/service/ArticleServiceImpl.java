@@ -22,7 +22,11 @@ public class ArticleServiceImpl implements ArticleService {
         int timeStampInt = Integer.parseInt(timestamp);
         int imageNumInt = Integer.parseInt(image_num);
         Article article = new Article(0,userIdInt,title,content,-1,timeStampInt,imageNumInt,0,null);
-        return articleDao.insertArticle(article);
+        // 插入文章
+        articleDao.insertArticle(article);
+        // 查询文章
+        Article article1 = new Article(-1,-1,null,null,-1,timeStampInt,-1,-1,null);
+        return articleDao.selectArticles(article1).get(0).getArticleId();
     }
 
     @Override
@@ -72,18 +76,24 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public boolean like(String articleId, String userId) {
+        System.out.println("articleId" + articleId + "userId" + userId);
         // 构造查询条件，首先判断文章是否存在
         Article article = new Article(Integer.parseInt(articleId),-1,null,null,-1,-1,-1,-1,null);
         // 如果数据库不存在这篇文章 则错误
-        if (articleDao.selectArticleCount(article) != 1) return false;
+        int res = articleDao.selectArticleCount(article);
+        System.out.println("selectArticleCount:"+res);
+        if (res != 1)
+            return false;
         Like like = new Like(0,Integer.parseInt(articleId),Integer.parseInt(userId));
         int like_num = articleDao.selectLikeCount(like);
+        System.out.println("like_num"+like_num);
         // 当前数据库没有点赞记录
         if (like_num == 0){
             // 插入当前点赞记录
             int res1 = articleDao.insertLike(like);
             // 同时该文章点赞数加1
             int res2 = articleDao.TotalLikePlusOne(like.getArticleId());
+            System.out.println("res1"+res1+"res2"+res2);
             return res1 == 1 && res2 == 1;
         }
         return false;
@@ -97,7 +107,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (articleDao.selectArticleCount(article) != 1) return false;
         Like like = new Like(0,Integer.parseInt(articleId),Integer.parseInt(userId));
         int like_num = articleDao.selectLikeCount(like);
-        System.out.println(like_num);
+        System.out.println("selectLikeCount:"+like_num);
         // 当前数据库有点赞记录
         if (like_num == 1){
             // 删除当前点赞记录

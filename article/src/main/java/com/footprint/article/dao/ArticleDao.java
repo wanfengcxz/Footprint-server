@@ -48,7 +48,7 @@ public interface ArticleDao {
     public int TotalLikePlusOne(int articleId);
 
     /**
-     * 将指定文章点赞数加1
+     * 将指定文章点赞数jian1
      * @param articleId 文章ID
      * @return 1:点赞数加1成功
      */

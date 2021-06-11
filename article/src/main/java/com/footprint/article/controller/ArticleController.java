@@ -31,10 +31,11 @@ public class ArticleController {
             String id_decrypt = AESUtil.decode(encryptCode);
             if (id_decrypt.equals(userId)) {
                 int res = articleService.publishArticle(userId,title,content,timestamp,image_num);
-                if (res == 1)
-                    return ResultUtil.success();
-                else
+                System.out.println(res);
+                if (res <= 0)
                     return ResultUtil.unknownError();
+                else
+                    return ResultUtil.success(res);
             } else
                 return ResultUtil.illegalAccess();
         } catch (BadPaddingException e) {
@@ -67,7 +68,7 @@ public class ArticleController {
                 // 验证用户
                 String id_decrypt = AESUtil.decode(encryptCode);
                 if (id_decrypt.equals(userId)) {
-                    List<Article> articleList = articleService.getRandomArticles(userId,3);
+                    List<Article> articleList = articleService.getRandomArticles(userId,10);
                     return ResultUtil.success(articleList);
                 }
                 else
@@ -87,6 +88,7 @@ public class ArticleController {
             // 验证用户
             String id_decrypt = AESUtil.decode(encryptCode);
             if (id_decrypt.equals(userId)) {
+                System.out.println("this is controller like function");
                 if (articleService.like(articleId,userId))
                     return ResultUtil.success();
                 else

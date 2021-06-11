@@ -39,8 +39,8 @@ public class ImageController {
                 while (iterator.hasNext()) {
                     MultipartFile file = req.getFile(iterator.next());
                     String imageName = index + ".png";
-//                    String imagePath = "D:\\Coding\\tmp\\" + userId + "\\" + articleId + "\\";
-                    String imagePath = "/home/ubuntu/footprint/image" + userId + "/" + articleId + "/";
+                    String imagePath = "D:\\Coding\\tmp\\" + userId + "\\" + articleId + "\\";
+//                    String imagePath = "/home/ubuntu/footprint/image" + userId + "/" + articleId + "/";
                     File dir = new File(imagePath);
                     if (!dir.isDirectory())
                         dir.mkdirs();
